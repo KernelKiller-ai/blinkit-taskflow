@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const API_URL = "https://blinkit-taskflow-2.onrender.com";
 const TASKS_URL = `${BASE_URL}/api/tasks`;
 const PROJECTS_URL = `${BASE_URL}/api/projects`;
 const USERS_URL = `${BASE_URL}/api/users`;
