@@ -1,7 +1,8 @@
-const API_URL = "https://blinkit-taskflow-2.onrender.com";
-const TASKS_URL = `${BASE_URL}/api/tasks`;
-const PROJECTS_URL = `${BASE_URL}/api/projects`;
-const USERS_URL = `${BASE_URL}/api/users`;
+const BASE_URL = "https://blinkit-taskflow-2.onrender.com";
+const API_URL = BASE_URL; // Dono ko same kar diya taaki conflict na ho
+const TASKS_URL = `${API_URL}/api/tasks`;
+const PROJECTS_URL = `${API_URL}/api/projects`;
+const USERS_URL = `${API_URL}/api/users`;
 
 const state = {
   tasks: [],
