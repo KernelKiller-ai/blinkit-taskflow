@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow | Blinkit Operations Dashboard</title>
+
+    <!-- Google Fonts (Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome Icons CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Top Sticky Header -->
+    <header class="page-header">
+      <div class="header-content">
+        <div class="brand">
+          <div class="logo-icon">⚡</div>
+          <div>
+            <span class="eyebrow">TaskFlow AI</span>
+            <span class="brand-badge">Blinkit Dark-Store</span>
+          </div>
+        </div>
+
+        <!-- Global Search Bar -->
+        <div class="header-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="global-search-input"
+            placeholder="Search tasks instantly..."
+          />
+        </div>
+
+        <div class="header-actions">
+          <button class="icon-btn" title="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-dot"></span>
+          </button>
+          <div class="user-profile">
+            <div class="avatar">A</div>
+            <div class="user-info">
+              <span class="user-name">Anurag Kumar</span>
+              <span class="user-role">Operations Lead</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Layout with Sidebar -->
+    <div class="app-body">
+      <!-- Left Sidebar Navigation -->
+      <aside class="sidebar-nav">
+        <div class="nav-group">
+          <a href="#" class="nav-item active"
+            ><i class="fa-solid fa-house"></i> Dashboard</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-folder"></i> Projects</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-clipboard-list"></i> Tasks</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-chart-pie"></i> Analytics</a
+          >
+          <a href="#" class="nav-item"
+            ><i class="fa-solid fa-gear"></i> Settings</a
+          >
+        </div>
+
+        <div class="nav-group">
+          <button id="open-project-modal" class="nav-item action-nav-btn">
+            <i class="fa-solid fa-folder-plus"></i> New Project
+          </button>
+          <a href="#" class="nav-item logout-btn"
+            ><i class="fa-solid fa-right-from-bracket"></i> Logout</a
+          >
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="page-shell">
+        <div class="welcome-banner">
+          <div>
+            <h1 class="page-title">Dark-Store Operations Control</h1>
+            <p class="banner-subtitle">
+              Manage pods, execute AI task parsing, and track real-time metrics.
+            </p>
+          </div>
+          <div class="banner-actions-group">
+            <div class="banner-pill">
+              <i class="fa-solid fa-bolt"></i> Live API Connected
+            </div>
+            <button id="open-task-modal" class="btn btn-accent btn-sm">
+              <i class="fa-solid fa-plus"></i> New Task
+            </button>
+          </div>
+        </div>
+
+        <!-- Statistics Overview Cards -->
+        <div class="stats-overview-grid">
+          <div class="stat-card">
+            <div class="stat-icon icon-blue">
+              <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <div class="stat-info">
+              <h4>Total Tasks</h4>
+              <div class="stat-number" id="stat-total">--</div>
+              <span class="stat-trend positive">↑ Active stream</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-green">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="stat-info">
+              <h4>Completed</h4>
+              <div class="stat-number" id="stat-completed">--</div>
+              <span class="stat-trend">Finished records</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-amber">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div class="stat-info">
+              <h4>Pending</h4>
+              <div class="stat-number" id="stat-pending">--</div>
+              <span class="stat-trend">Requires attention</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon icon-purple">
+              <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <div class="stat-info">
+              <h4>Projects</h4>
+              <div class="stat-number" id="stat-projects">--</div>
+              <span class="stat-trend">Active pods</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Section: AI Quick Add -->
+        <section class="panel-card ai-hero-card">
+          <div class="card-title-group">
+            <h2><span>✨</span> AI Quick-Add Task</h2>
+            <span class="ai-badge">Zero-Config Parser</span>
+          </div>
+          <p class="card-desc">
+            Describe what needs to be done in plain English. AI auto-extracts
+            priority and due date instantly.
+          </p>
+          <form id="quick-add-form" class="ai-form-row">
+            <textarea
+              id="quick-description"
+              rows="2"
+              placeholder="e.g. Urgent inventory audit next Friday, ASAP"
+            ></textarea>
+            <button type="submit" class="btn btn-primary btn-ai">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Create with AI
+            </button>
+          </form>
+        </section>
+
+        <!-- Advanced Search & Algorithms Collapsible Section -->
+        <details class="advanced-search-panel">
+          <summary class="advanced-summary">
+            <span
+              ><i class="fa-solid fa-sliders"></i> Advanced Search & Algorithms
+              Engine</span
+            >
+            <i class="fa-solid fa-chevron-down"></i>
+          </summary>
+          <form id="search-form" class="stacked-form advanced-form-grid">
+            <label class="field">
+              <span>Filter Exact Title</span>
+              <input
+                id="search-title"
+                type="text"
+                placeholder="Enter exact task title..."
+              />
+            </label>
+            <label class="field">
+              <span>Algorithm Engine</span>
+              <select id="search-algo">
+                <option value="binary">Binary Search (O(log n))</option>
+                <option value="linear">Linear Search (O(n))</option>
+              </select>
+            </label>
+            <div class="button-row align-self-end">
+              <button type="submit" class="btn btn-secondary">
+                <i class="fa-solid fa-magnifying-glass"></i> Search Index
+              </button>
+              <button type="button" id="sort-button" class="btn btn-outline">
+                <i class="fa-solid fa-arrow-down-wide-short"></i> Insertion Sort
+              </button>
+            </div>
+          </form>
+        </details>
+
+        <!-- Main Workspace Grid -->
+        <div class="workspace-grid">
+          <!-- Active Task Stream -->
+          <div class="task-card">
+            <div class="task-card-header">
+              <h2><i class="fa-solid fa-list-check"></i> Active Task Stream</h2>
+              <div class="task-header-actions">
+                <button
+                  id="refresh-button"
+                  type="button"
+                  class="btn btn-sm btn-outline"
+                  title="Refresh from server"
+                >
+                  <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+            </div>
+            <div id="task-list" class="task-list"></div>
+          </div>
+
+          <!-- Pod Analytics Widget -->
+          <div class="stats-card">
+            <h2><i class="fa-solid fa-chart-line"></i> Pod-wise Analytics</h2>
+            <p class="card-desc">SQL aggregate GROUP BY metrics</p>
+            <div id="stats-container" class="stats-list-container"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal: Create Task -->
+    <div id="task-modal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2><i class="fa-solid fa-plus-circle"></i> Create New Task</h2>
+          <button
+            type="button"
+            class="close-modal-btn"
+            id="close-task-modal"
+            title="Close create task modal"
+            aria-label="Close create task modal"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <form id="task-form" class="stacked-form">
+          <label class="field">
+            <span>Title *</span>
+            <input id="task-title" type="text" placeholder="Enter task title" />
+            <span
+              id="title-error"
+              class="inline-error"
+              aria-live="polite"
+            ></span>
+          </label>
+          <label class="field">
+            <span>Due Date</span>
+            <input id="task-due-date" type="date" />
+          </label>
+          <label class="field">
+            <span>Priority</span>
+            <select id="task-priority">
+              <option value="low">🟢 Low</option>
+              <option value="medium" selected>🟡 Medium</option>
+              <option value="high">🔴 High</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Project Pod</span>
+            <select id="task-project"></select>
+          </label>
+          <button type="submit" class="btn btn-accent modal-submit-btn">
+            <i class="fa-solid fa-check"></i> Save Task Record
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal: Create Project -->
+    <div id="project-modal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2><i class="fa-solid fa-folder-plus"></i> Create Project Pod</h2>
+          <button
+            type="button"
+            class="close-modal-btn"
+            id="close-project-modal"
+            title="Close project modal"
+            aria-label="Close project modal"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <form id="project-form" class="stacked-form">
+          <label class="field">
+            <span>Project Name *</span>
+            <input
+              id="project-name"
+              type="text"
+              placeholder="e.g. Pod-A Inventory"
+            />
+          </label>
+          <button type="submit" class="btn btn-primary modal-submit-btn">
+            <i class="fa-solid fa-plus"></i> Initialize Pod
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <div>
+        <strong>TaskFlow AI</strong> — Blinkit Dark-Store Engineering Platform
+      </div>
+      <div>Powered by FastAPI & SQLAlchemy</div>
+    </footer>
+
+    <!-- App JS Script -->
+    <script src="app.js"></script>
+  </body>
+</html>
